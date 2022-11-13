@@ -18,12 +18,10 @@
             <div class="main__promo">
                 <h2>Promo : " <%= promo.name %> "</h2>
                 <p>Promo id : <%= promo.id %> </p>
-                <a class="promo-link" href="/<%= promo.id %>">Voir les étudiants</a>
+                <a class="promo-link" href="/promo/<%= promo.id %>">Voir les étudiants</a>
                 <a class="github-link" href="<%= promo.github_orga %>">Github de la promo</a>
             </div>
         <%}%>
-       
-
     </main>
 
     <footer>

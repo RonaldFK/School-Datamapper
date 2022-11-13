@@ -14,7 +14,6 @@ const mainController = {
                 },
      displayStudents(req,res){
         const students = `SELECT * FROM students WHERE promo=${req.params.promo};`;
-        console.log(students);
         client
         .query(students)
         .then(result => {
@@ -23,7 +22,30 @@ const mainController = {
                 res.render('students');
             })
             .catch(err => console.log(err.stack));
-     }
+     },
+     displaySearch(req,res){
+        // Gestion de la recherche de la promo
+        const promoSearched = req.query.promoSearched;
+        console.log(promoSearched);
+        const promoSearchedResult = `SELECT * FROM students WHERE promo=${promoSearched};`;
+        if (promoSearched) {
+            client
+            .query(promoSearchedResult)
+            .then(result => {
+                // controle de l'existance de la promo
+                if (result.rowCount == 0) {
+                    res.render('404')
+                }
+                res.locals.studentsResult = result.rows;
+                res.render('students');
+                console.log(result.rowCount);
+            })
+            .catch(err => console.log(err.catch));
+        } else {
+            res.render('404')
+        }
+        
+    }
          
     }
 

@@ -15,6 +15,11 @@
             <footer>
                 <a href="/">Home</a>
             </footer>
+            <form action="/search" method="GET">
+                <label for="search-promo">Afficher une autre promo</label>
+                <input type="text" id="search-promo" name="promoSearched">
+                <input class="search" type="submit">
+            </form>
     </div>
     <main class="main">
         <% for(const student of studentsResult) {%>

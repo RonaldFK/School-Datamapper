@@ -3,6 +3,8 @@ const router = express.Router();
 const mainController = require('./controllers/mainController');
 
 router.get('/',mainController.displayPromos);
-router.get('/:promo',mainController.displayStudents);
+router.get('/promo/:promo',mainController.displayStudents);
+router.get('/search',mainController.displaySearch);
+
 
 module.exports = router;
