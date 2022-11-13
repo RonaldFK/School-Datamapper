@@ -1,0 +1,64 @@
+body {
+    background: rgba(31, 107, 170, 0.816);
+    font-family: 'Fragment Mono', monospace;
+}
+.header {
+    margin-top: 5rem;
+    text-align: center;
+    font-size: 20px;
+    color: aliceblue;
+    position: relative;
+}
+
+.main {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+    margin: 5rem 30rem;
+}
+
+.main__promo {
+    margin-top: 5rem;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    align-items: center;
+    background: rgb(26, 202, 176);
+    border-radius: 15px;
+    width: 20%;
+    height: 20rem;
+}
+
+.promo-link {
+    color: aliceblue;
+    font-size: 30px;
+}
+
+.github-link {
+    
+    color: aliceblue;
+    position: absolute;
+    bottom: 1rem
+}
+
+.main__students {
+    background: rgba(234, 231, 96, 0.8);
+    margin-top: 5rem;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    align-items: center;
+    border-radius: 15px;
+    width: 20%;
+    height: 20rem;
+    color: brown
+}
+
+.img-profile {
+    width: 150px;
+    margin-top: 1rem;
+    border-radius: 50%
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Fragment+Mono&display=swap');
