@@ -32,7 +32,7 @@ const mainController = {
             client
             .query(promoSearchedResult)
             .then(result => {
-                // controle de l'existance de la promo
+                // controle de l'existance de la promo, sinon 404 error
                 if (result.rowCount == 0) {
                     res.render('404')
                 }
