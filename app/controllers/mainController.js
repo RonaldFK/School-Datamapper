@@ -1,13 +1,10 @@
-const client = require('../data/dataOclock.js')
-
+const client = require('../data/dataOclock.js');
+const dataMapper = require('../data/dataMapper.js');
 const mainController = {
     // Afficher l'ensemble de mes promos
      async displayPromos(req,res){
-        const findPromo = 'SELECT * FROM promo;';
-        const result = await client.query(findPromo)
-        try { res.locals.promoResult = result.rows;
-            res.render('index');}          
-        catch(err) {console.log(err.stack)};
+        res.locals.promoResult = await dataMapper.displayPromos();;
+        res.render('index');
                 },
      // Je récupère la liste des students de la promo en cours de visualisation
      async displayStudents(req,res){

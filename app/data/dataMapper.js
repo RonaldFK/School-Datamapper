@@ -1,15 +1,14 @@
 const client = require('./dataOclock.js')
 
 const dataMapper = {
-    displayPromos(){
-        const promos = 'SELECT * FROM promo;';
-        client
-                .query(promos)
-                .then(result => {
-                    res.locals.promoResult = result.rows;
-                    res.render('index');
-                })
-                .catch(err => console.log(err.stack));
+    async displayPromos() {
+        let promoResult;
+        const findPromo = 'SELECT * FROM promo;';
+        const result = await client.query(findPromo)
+        try { promoResult = result.rows;}
+            
+            catch(err) {console.log(err.stack)}
+        return promoResult       
     }
 }
 
