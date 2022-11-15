@@ -5,6 +5,7 @@ const mainController = require('./controllers/mainController');
 router.get('/',mainController.displayPromos);
 router.get('/promo/:promo',mainController.displayStudents);
 router.get('/search',mainController.displaySearch);
+router.post('/search',mainController.InsertData)
 
 
 module.exports = router;

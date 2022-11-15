@@ -13,6 +13,7 @@ const mainController = {
                 .catch(err => console.log(err.stack));
                 },
      displayStudents(req,res){
+        // Je récupère
         const students = `SELECT * FROM students WHERE promo=${req.params.promo};`;
         client
         .query(students)
@@ -26,6 +27,7 @@ const mainController = {
      displaySearch(req,res){
         // Gestion de la recherche de la promo
         const promoSearched = req.query.promoSearched;
+
         console.log(promoSearched);
         const promoSearchedResult = `SELECT * FROM students WHERE promo=${promoSearched};`;
         if (promoSearched) {
@@ -45,6 +47,33 @@ const mainController = {
             res.render('404')
         }
         
+    },
+    InsertData(req,res){
+ // Gestion de la recherche de la promo
+//  const dataToInsert = `INSERT INTO students (first_name,last_name) VALUES ('${req.body.prenom}','${req.body.nom}');`
+console.log(req.body.prenom)
+ const dataToInsert = `INSERT INTO students (first_name,last_name) VALUES ('${req.body.prenom}','${req.body.nom}');`;
+ const promoSearched = req.query.promoSearched;
+        client
+        .query(dataToInsert)
+        console.log(promoSearched);
+        const promoSearchedResult = `SELECT * FROM students WHERE promo=${promoSearched};`;
+        if (promoSearched) {
+            client
+            .query(promoSearchedResult)
+            .then(result => {
+                // controle de l'existance de la promo, sinon 404 error
+                if (result.rowCount == 0) {
+                    res.render('404')
+                }
+                res.locals.studentsResult = result.rows;
+                res.render('students');
+                console.log(result.rowCount);
+            })
+            .catch(err => console.log(err.catch));
+        } else {
+            res.render('404')
+        }
     }
          
     }

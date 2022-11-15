@@ -15,7 +15,7 @@ body {
     flex-wrap: wrap;
     justify-content: center;
     gap: 2rem;
-    margin: 5rem 30rem;
+    margin: 5rem 10rem;
 }
 
 .main__promo {
@@ -26,7 +26,7 @@ body {
     align-items: center;
     background: rgb(26, 202, 176);
     border-radius: 15px;
-    width: 20%;
+    min-width: 30%;
     height: 20rem;
 }
 
