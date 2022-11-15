@@ -20,6 +20,14 @@
                 <input type="text" id="search-promo" name="promoSearched">
                 <input class="search" type="submit">
             </form>
+            <form action="" method="POST">
+                <label for="search-promo">Insérer un élève</label>
+                <input type="text" id="nom" name="nom" placeholder="nom">
+                <input type="text" id="prenom" name="prenom" placeholder="prénom">
+                <input type="text" id="pseudo-github" name="pseudo-github" placeholder="pseudo-github">
+                <input type="text" id="promo" name="promo" placeholder="promo">
+                <input class="search" type="submit">
+            </form>
     </div>
     <main class="main">
         <% for(const student of studentsResult) {%>

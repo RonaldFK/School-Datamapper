@@ -1,50 +1,55 @@
 const client = require('../data/dataOclock.js')
 
 const mainController = {
-
-    displayPromos(req,res){
-        const promos = 'SELECT * FROM promo;';
-        client
-                .query(promos)
-                .then(result => {
-                    res.locals.promoResult = result.rows;
-                    res.render('index');
-                })
-                .catch(err => console.log(err.stack));
+    // Afficher l'ensemble de mes promos
+     async displayPromos(req,res){
+        const findPromo = 'SELECT * FROM promo;';
+        const result = await client.query(findPromo)
+        try { res.locals.promoResult = result.rows;
+            res.render('index');}          
+        catch(err) {console.log(err.stack)};
                 },
-     displayStudents(req,res){
+     // Je récupère la liste des students de la promo en cours de visualisation
+     async displayStudents(req,res){
         const students = `SELECT * FROM students WHERE promo=${req.params.promo};`;
-        client
-        .query(students)
-        .then(result => {
-                res.locals.studentsResult = result.rows;
-                //console.log(studentsResult)  
-                res.render('students');
-            })
-            .catch(err => console.log(err.stack));
+        const result = await client.query(students)
+        try {res.locals.studentsResult = result.rows;
+            res.render('students');
+        }
+        catch (error) {console.log(error.stack)}
      },
-     displaySearch(req,res){
+     // Gestion de la recherche d'une promo
+     async displaySearch(req,res){
         // Gestion de la recherche de la promo
         const promoSearched = req.query.promoSearched;
-        console.log(promoSearched);
         const promoSearchedResult = `SELECT * FROM students WHERE promo=${promoSearched};`;
         if (promoSearched) {
-            client
-            .query(promoSearchedResult)
-            .then(result => {
-                // controle de l'existance de la promo, sinon 404 error
-                if (result.rowCount == 0) {
-                    res.render('404')
-                }
+            const result = await client.query(promoSearchedResult)
+            // si la promo n'existe pas
+            try {if (result.rowCount == 0) {
+                res.render('404')}
                 res.locals.studentsResult = result.rows;
                 res.render('students');
                 console.log(result.rowCount);
-            })
-            .catch(err => console.log(err.catch));
-        } else {
-            res.render('404')
+            }
+            catch (error) { console.log(error.stack);res.render('404')}
         }
-        
+            
+        },
+    // Gestion insertion d'un nouvel élève    
+    async InsertData(req,res){
+        const promoSearched = req.query.promoSearched;
+        console.log(req.body.prenom)
+        //const promoSearched = req.query.promoSearched;
+        const dataToInsert = `INSERT INTO students (first_name,last_name,promo) VALUES ('${req.body.prenom}','${req.body.nom}',${req.body.promo});`;
+        await client.query(dataToInsert)
+        try {
+            res.redirect(`/search?promoSearched=${req.query.promoSearched}`);
+            //console.log(result);
+        }
+        catch(error){
+            console.log(error.stack)
+        }
     }
          
     }

@@ -5,10 +5,13 @@ const server = express();
 const router = require('./app/router.js')
 
 const PORT = process.env.PORT
+
 server.set('view engine', 'ejs');
 server.set('views', './app/views');
 server.use(express.static('./app/public'));
+server.use(express.urlencoded({ extended: true }));
 server.use(router);
+
 
 
 
