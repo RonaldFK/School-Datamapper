@@ -9,7 +9,15 @@ const dataMapper = {
             
             catch(err) {console.log(err.stack)}
         return promoResult       
-    }
+    },
+    async findStudents(promo) {
+        let result;
+        const students = `SELECT * FROM students WHERE promo=${promo};`;
+        try {result = await client.query(students)}
+            
+        catch(err) {console.log(err.stack)}
+        return result;
+    } 
 }
 
 module.exports = dataMapper;

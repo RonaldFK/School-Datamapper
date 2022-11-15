@@ -3,17 +3,19 @@ const dataMapper = require('../data/dataMapper.js');
 const mainController = {
     // Afficher l'ensemble de mes promos
      async displayPromos(req,res){
-        res.locals.promoResult = await dataMapper.displayPromos();;
-        res.render('index');
+        res.locals.promoResult = await dataMapper.displayPromos();
+        try {res.render('index')}
+        catch (error) {console.log(error.stack)}
                 },
      // Je récupère la liste des students de la promo en cours de visualisation
      async displayStudents(req,res){
-        const students = `SELECT * FROM students WHERE promo=${req.params.promo};`;
-        const result = await client.query(students)
-        try {res.locals.studentsResult = result.rows;
+        const students = await dataMapper.findStudents(req.params.promo);
+        console.log(students);
+        try {res.locals.studentsResult = students.rows;
             res.render('students');
         }
-        catch (error) {console.log(error.stack)}
+        catch (error) {console.log(error.stack)};
+
      },
      // Gestion de la recherche d'une promo
      async displaySearch(req,res){
