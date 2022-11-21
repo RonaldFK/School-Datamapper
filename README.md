@@ -11,8 +11,6 @@
 Utilisation de données d'une école présentes dans une BDD PosteGres.
 Sur ce projet, on travaille uniquement sur deux tables - promos qui contient toutes les promos de l'école et students qui correspond à la liste des étudiants par promos.
 
-### Projet :
-
 Le fichier d'initialisation de la BDD n'est pas partagé pour des raisons d'anonymisation.
 Ces données inclus des liens, photo et pseudo github - le fait de les charger sur le projet de manière anonymisée ne serait donc pas pertinent.
 ### Prérequis :
