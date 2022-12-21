@@ -8,7 +8,7 @@
 
 ### Projet :
 
-Utilisation de données d'une école présentes dans une BDD PosteGres.
+Utilisation de données d'une école présentes dans une BDD PostGres.
 Sur ce projet, on travaille uniquement sur deux tables - promos qui contient toutes les promos de l'école et students qui correspond à la liste des étudiants par promos.
 
 Le fichier d'initialisation de la BDD n'est pas partagé pour des raisons d'anonymisation.
