@@ -44,7 +44,6 @@ const mainController = {
   },
   // Gestion insertion d'un nouvel élève
   async InsertData (req, res) {
-    const promoSearched = req.query.promoSearched
     console.log(req.body.prenom)
     const dataToInsert = `INSERT INTO students (first_name,last_name,promo) VALUES ('${req.body.prenom}','${req.body.nom}',${req.body.promo});`
     await client.query(dataToInsert)
